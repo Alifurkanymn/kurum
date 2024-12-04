@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,5 +18,56 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+}
+
+.container {
+  position: relative;
+  padding-left: 2rem /* 32px */;
+  padding-right: 2rem /* 32px */;
+  @media (min-width: 768px) {
+    padding-left: 6rem /* 96px */;
+    padding-right: 6rem /* 96px */;
+  }
+}
+
+.menu-wrapper > .active {
+  @apply py-1 px-3 bg-zinc-800 rounded-3xl;
+}
+
+.intro-height {
+  height: calc(100vh - 150px);
+  @media (min-width: 768px) {
+    height: calc(100vh - 250px);
+  }
+}
+
+.green-shadow {
+  -webkit-box-shadow: 15px 20px 5px 0px rgba(34, 197, 94, 0.42);
+  -moz-box-shadow: 15px 20px 5px 0px rgba(34, 197, 94, 0.42);
+  box-shadow: 15px 20px 5px 0px rgba(34, 197, 94, 0.42);
+  transition: 0.3s all;
+}
+.white-shadow {
+  -webkit-box-shadow: 15px 20px 5px 0px rgba(255, 255, 255, 0.274);
+  -moz-box-shadow: 15px 20px 5px 0px rgba(255, 255, 255, 0.274);
+  box-shadow: 15px 20px 5px 0px rgba(255, 255, 255, 0.274);
+  transition: 0.3s all;
+}
+
+.block-wrapper {
+  @apply flex flex-col items-center;
+}
+
+.block-green {
+  @apply block w-12 lg:w-16  h-12 lg:h-16 rounded-lg bg-green-500;
+}
+
+.block-white {
+  @apply block w-12 lg:w-16  h-12 lg:h-16 rounded-lg bg-white;
+}
+
+.min-h-50-screen {
+  min-height: 50vh;
 }
