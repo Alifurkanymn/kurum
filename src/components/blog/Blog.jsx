@@ -1,42 +1,36 @@
-import React, { useEffect } from 'react'
-import logo1 from "../../../public/icons/logo-1.svg";
+'use client'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import logo1 from "../../../public/icons/logo.svg";
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 
 const Blog = () => {
+    const el = useRef();
+    gsap.registerPlugin(ScrollTrigger)
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context((self) => {
+        const boxes = self.selector(".box");
+        boxes.forEach((box) => {
+            gsap.to(box, { 
+            x: 0,
+            scrollTrigger: {
+                trigger: box,
+                start: "bottom bottom",
+                end: "top 20%",
+                scrub: 0.5,
+                },
+            ease: "power2.out",
+            duration: 3,
+            });
+        });
+        }, el);
+        return () => ctx.revert();
+    }, []);
+
+
     useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger)
-        const mm = gsap.matchMedia();
-
-        mm.add(
-            {
-                isMobile: "(max-width: 640px)",
-                isDesktop: "(min-width: 1200px)",
-            },
-            (context) => {
-                const { isMobile } = context.conditions;
-
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: '.blog-wrapper',
-                        pin: true,
-                        start: 'top top',
-                        end: '+=100%',
-                        scrub: 1,
-                        ease: 'linear',
-                        pinSpacing: false,
-                    },
-                });
-
-                tl.to('.item', {
-                    marginBottom: isMobile ? -575 : -500,
-                    stagger: 1,
-                }, '<');
-
-                return () => context.revert();
-            }
-        );
         const blurProperty = gsap.utils.checkPrefix("filter"),
             blurExp = /blur\((.+)?px\)/,
             getBlurMatch = (target) =>
@@ -89,7 +83,7 @@ const Blog = () => {
     }, []);
 
     return (
-        <div className='blog flex flex-col gap-8 mt-6' id="wrapper">
+        <div className='blog flex flex-col gap-8 my-20 lg:my-40' id="wrapper">
             <div id="content">
                 <div className='flex justify-end items-end text-end mb-14 lg:my-20'>
                     <h1 className="blurry-text text-3xl lg:text-6xl font-light underline decoration-green-500">
@@ -101,8 +95,8 @@ const Blog = () => {
                         </span>
                     </h1>
                 </div>
-                <div className='blog-wrapper'>
-                    <div className='grid grid-cols-12 gap-0 mt-6 item'>
+                <div className='blog-wrapper' ref={el}>
+                    <div className='box grid grid-cols-12 gap-0 mt-6 item'>
                         <div className='col-span-12 lg:col-span-4'>
                             <div className='flex flex-col items-start justify-center bg-zinc-900 h-full rounded-t-3xl min-h-50-screen p-8'>
                                 <h3 className='text-3xl mb-3'>Günün kurunu ve Piyasayı
@@ -122,7 +116,7 @@ const Blog = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 gap-0 mt-6 item'>
+                    <div className='box grid grid-cols-12 gap-0 mt-6 item'>
                         <div className='col-span-12 lg:col-span-4'>
                             <div className='flex flex-col items-start justify-center bg-zinc-900 h-full rounded-t-3xl min-h-50-screen p-8'>
                                 <h3 className='text-3xl mb-3'>Günün kurunu ve Piyasayı
@@ -142,7 +136,7 @@ const Blog = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 gap-0 mt-6 item'>
+                    <div className='box grid grid-cols-12 gap-0 mt-6 item'>
                         <div className='col-span-12 lg:col-span-4'>
                             <div className='flex flex-col items-start justify-center bg-zinc-900 h-full rounded-t-3xl min-h-50-screen p-8'>
                                 <h3 className='text-3xl mb-3'>Günün kurunu ve Piyasayı

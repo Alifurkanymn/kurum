@@ -71,3 +71,60 @@ body {
 .min-h-50-screen {
   min-height: 50vh;
 }
+
+.blog-wrapper {
+  height: auto !important;
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  border-top: 3px dashed #fff;
+  display: none;
+  top: 45%;
+  @media (min-width: 1040px) {
+    display: block;
+  }
+}
+
+.dotted::before {
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  bottom: 20%;
+  background-color: #22c55e;
+  border-radius: 50%;
+  display: none;
+  @media (min-width: 1040px) {
+    display: block;
+  }
+  @media (min-width: 1250px) {
+    bottom: 28%;
+  }
+  @media (min-width: 1580px) {
+    bottom: 35%;
+  }
+}
+
+.item {
+  cursor: pointer;
+}
+
+.item:hover .item-content {
+  opacity: 1;
+  transition: 0.3s all;
+}
+
+.item-content {
+  opacity: 1;
+  transition: 0.3s all;
+  @media (min-width: 1040px) {
+    opacity: 0;
+  }
+}
+
+.blog .box {
+  transform: translate(-2000px, 0px);
+}
