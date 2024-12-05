@@ -77,7 +77,7 @@ const Info = () => {
                         Analiz et, kaydet
                         hatırlat.</h3>
                       <p className='text-base text-zinc-600'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                      <PrimaryButton className="w-12 mt-4" type="button" title="Devam Et" onClick={handleClick} hasRightArrow={true} />
+                      <PrimaryButton className="lg:w-12 mt-4" type="button" title="Devam Et" onClick={handleClick} hasRightArrow={true} />
                 </div>
             </div>
         </div>
